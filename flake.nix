@@ -17,8 +17,13 @@
     devShells = forEachSupportedSystem ({pkgs}: {
       default = pkgs.mkShell {
         packages = with pkgs; [
-          dotnet-sdk_8
-          csharp-ls
+          csharpier
+          (with dotnetCorePackages;
+            combinePackages [
+              sdk_6_0
+              sdk_8_0
+            ])
+          roslyn-ls
           mono
           msbuild
         ];
