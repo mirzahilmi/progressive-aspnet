@@ -1,9 +1,12 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using progressive_aspnet.DB;
+using progressive_aspnet.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddDbContext<PizzaDb>(options => options.UseInMemoryDatabase("items"));
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc(
@@ -31,10 +34,40 @@ if (app.Environment.IsDevelopment())
 app.MapGet("/", () => "Hello World!");
 
 var pizzas = app.MapGroup("/pizzas");
-pizzas.MapGet("/", () => PizzaDB.GetPizzas());
-pizzas.MapGet("/{id}", (int id) => PizzaDB.GetPizza(id));
-pizzas.MapPost("/", (Pizza pizza) => PizzaDB.CreatePizza(pizza));
-pizzas.MapPut("/", (Pizza pizza) => PizzaDB.UpdatePizza(pizza));
-pizzas.MapDelete("/{id}", (int id) => PizzaDB.RemovePizza(id));
+pizzas.MapGet("/", async (PizzaDb db) => Results.Ok(await db.Pizzas.ToListAsync()));
+pizzas.MapGet("/{id}", async (PizzaDb db, int id) => await db.Pizzas.FindAsync(id));
+pizzas.MapPost(
+    "/",
+    async (PizzaDb db, Pizza pizza) =>
+    {
+        await db.Pizzas.AddAsync(pizza);
+        await db.SaveChangesAsync();
+        return Results.Created($"/pizzas/{pizza.Id}", pizza);
+    }
+);
+pizzas.MapPut(
+    "/{id}",
+    async (PizzaDb db, Pizza pizza, int id) =>
+    {
+        var _pizza = await db.Pizzas.FindAsync(id);
+        if (_pizza is null)
+            return Results.NotFound();
+        _pizza = pizza;
+        await db.SaveChangesAsync();
+        return Results.NoContent();
+    }
+);
+pizzas.MapDelete(
+    "/{id}",
+    async (PizzaDb db, int id) =>
+    {
+        var pizza = await db.Pizzas.FindAsync(id);
+        if (pizza is null)
+            return Results.NotFound();
+        db.Pizzas.Remove(pizza);
+        await db.SaveChangesAsync();
+        return Results.NoContent();
+    }
+);
 
 app.Run();

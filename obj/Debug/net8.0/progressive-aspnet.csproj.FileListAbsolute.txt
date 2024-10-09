@@ -31,3 +31,6 @@
 /home/mirza/Projects/progressive-aspnet/obj/Debug/net8.0/progressive-aspnet.csproj.AssemblyReference.cache
 /home/mirza/Projects/progressive-aspnet/obj/Debug/net8.0/progressive-aspnet.MvcApplicationPartsAssemblyInfo.cs
 /home/mirza/Projects/progressive-aspnet/obj/Debug/net8.0/progress.3F6E1277.Up2Date
+/home/mirza/Projects/progressive-aspnet/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.dll
+/home/mirza/Projects/progressive-aspnet/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/home/mirza/Projects/progressive-aspnet/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll

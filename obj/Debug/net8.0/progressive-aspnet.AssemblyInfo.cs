@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("progressive-aspnet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43f1d0fb535e56018652ad00f644e005f967a40b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2dddd7db768eeaf07e0db65e1be0acfb11bca70c")]
 [assembly: System.Reflection.AssemblyProductAttribute("progressive-aspnet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("progressive-aspnet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

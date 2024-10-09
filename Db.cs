@@ -1,10 +1,6 @@
-namespace progressive_aspnet.DB;
+using progressive_aspnet.Models;
 
-public record Pizza
-{
-    public int Id { get; set; }
-    public string? Name { get; set; }
-}
+namespace progressive_aspnet.DB;
 
 public class PizzaDB
 {
