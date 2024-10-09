@@ -18,12 +18,12 @@
       default = pkgs.mkShell {
         packages = with pkgs; [
           csharpier
+          roslyn-ls
           (with dotnetCorePackages;
             combinePackages [
               sdk_6_0
               sdk_8_0
             ])
-          roslyn-ls
           mono
           msbuild
         ];
